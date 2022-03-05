@@ -1,4 +1,8 @@
-# tnlmarsha.github.io
-Static additions
+# GitHub 4 the win!
+## [Resume](https://tnlmarsha.github.io/resume/)
 
-## Resume placeholder 
+### Upcoming Additions
+- Gallery
+- Portfolio
+- Skills Tree
+- et al.
