@@ -4,9 +4,24 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
-(function() {
+(function () {
   "use strict";
-
+  function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+  // document.onload = function () {
+  const currAge = getAge("1987/06/27");
+  const ageElement = document.getElementById("age");
+  console.log("Setting " + ageElement.innerHTML + " to " + currAge);
+  ageElement.innerHTML = currAge;
+  // }
   /**
    * Easy selector helper function
    */
@@ -90,7 +105,7 @@
   /**
    * Mobile nav toggle
    */
-  on('click', '.mobile-nav-toggle', function(e) {
+  on('click', '.mobile-nav-toggle', function (e) {
     select('body').classList.toggle('mobile-nav-active')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
@@ -99,7 +114,7 @@
   /**
    * Scrool with offset on links with a class name .scrollto
    */
-  on('click', '.scrollto', function(e) {
+  on('click', '.scrollto', function (e) {
     if (select(this.hash)) {
       e.preventDefault()
 
@@ -128,30 +143,30 @@
   /**
    * Hero type effect
    */
-   const typed = select('.typed')
-   if (typed) {
-     let typed_strings = typed.getAttribute('data-typed-items')
-     typed_strings = typed_strings.split(',')
-     new Typed('.typed', {
-       strings: typed_strings,
-       loop: true,
-       typeSpeed: 50,
-       backSpeed: 25,
-       backDelay: 2000
-     });
-   }
-     const typed2 = select('.typed2')
-     if (typed2) {
-       let typed_strings = typed2.getAttribute('data-typed-items')
-       typed_strings = typed_strings.split(',')
-       new Typed('.typed2', {
-         strings: typed_strings,
-         loop: true,
-         typeSpeed: 50,
-         backSpeed: 25,
-         backDelay: 2000
-       });
-      }
+  const typed = select('.typed')
+  if (typed) {
+    let typed_strings = typed.getAttribute('data-typed-items')
+    typed_strings = typed_strings.split(',')
+    new Typed('.typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 50,
+      backSpeed: 25,
+      backDelay: 2000
+    });
+  }
+  const typed2 = select('.typed2')
+  if (typed2) {
+    let typed_strings = typed2.getAttribute('data-typed-items')
+    typed_strings = typed_strings.split(',')
+    new Typed('.typed2', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 50,
+      backSpeed: 25,
+      backDelay: 2000
+    });
+  }
 
   /**
    * Skills animation
@@ -161,7 +176,7 @@
     new Waypoint({
       element: skilsContent,
       offset: '80%',
-      handler: function(direction) {
+      handler: function (direction) {
         let progress = select('.progress .progress-bar', true);
         progress.forEach((el) => {
           el.style.width = el.getAttribute('aria-valuenow') + '%'
@@ -182,9 +197,9 @@
 
       let portfolioFilters = select('#portfolio-flters li', true);
 
-      on('click', '#portfolio-flters li', function(e) {
+      on('click', '#portfolio-flters li', function (e) {
         e.preventDefault();
-        portfolioFilters.forEach(function(el) {
+        portfolioFilters.forEach(function (el) {
           el.classList.remove('filter-active');
         });
         this.classList.add('filter-active');
@@ -192,7 +207,7 @@
         portfolioIsotope.arrange({
           filter: this.getAttribute('data-filter')
         });
-        portfolioIsotope.on('arrangeComplete', function() {
+        portfolioIsotope.on('arrangeComplete', function () {
           AOS.refresh()
         });
       }, true);
