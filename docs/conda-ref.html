@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>README.md</title>
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+	<style>
+		/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+		/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+		body {
+			font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+			font-size: var(--vscode-markdown-font-size, 14px);
+			padding: 0 26px;
+			line-height: var(--vscode-markdown-line-height, 22px);
+			word-wrap: break-word;
+		}
+
+		#code-csp-warning {
+			position: fixed;
+			top: 0;
+			right: 0;
+			color: white;
+			margin: 16px;
+			text-align: center;
+			font-size: 12px;
+			font-family: sans-serif;
+			background-color: #444444;
+			cursor: pointer;
+			padding: 6px;
+			box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+		}
+
+		#code-csp-warning:hover {
+			text-decoration: none;
+			background-color: #007acc;
+			box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+		}
+
+		body.scrollBeyondLastLine {
+			margin-bottom: calc(100vh - 22px);
+		}
+
+		body.showEditorSelection .code-line {
+			position: relative;
+		}
+
+		body.showEditorSelection .code-active-line:before,
+		body.showEditorSelection .code-line:hover:before {
+			content: "";
+			display: block;
+			position: absolute;
+			top: 0;
+			left: -12px;
+			height: 100%;
+		}
+
+		body.showEditorSelection li.code-active-line:before,
+		body.showEditorSelection li.code-line:hover:before {
+			left: -30px;
+		}
+
+		.vscode-light.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.15);
+		}
+
+		.vscode-light.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(0, 0, 0, 0.40);
+		}
+
+		.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-dark.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.4);
+		}
+
+		.vscode-dark.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 255, 255, 0.60);
+		}
+
+		.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-active-line:before {
+			border-left: 3px solid rgba(255, 160, 0, 0.7);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+			border-left: 3px solid rgba(255, 160, 0, 1);
+		}
+
+		.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+			border-left: none;
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 100%;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a:focus,
+		input:focus,
+		select:focus,
+		textarea:focus {
+			outline: 1px solid -webkit-focus-ring-color;
+			outline-offset: -1px;
+		}
+
+		hr {
+			border: 0;
+			height: 2px;
+			border-bottom: 2px solid;
+		}
+
+		h1 {
+			padding-bottom: 0.3em;
+			line-height: 1.2;
+			border-bottom-width: 1px;
+			border-bottom-style: solid;
+		}
+
+		h1,
+		h2,
+		h3 {
+			font-weight: normal;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		table>thead>tr>th {
+			text-align: left;
+			border-bottom: 1px solid;
+		}
+
+		table>thead>tr>th,
+		table>thead>tr>td,
+		table>tbody>tr>th,
+		table>tbody>tr>td {
+			padding: 5px 10px;
+		}
+
+		table>tbody>tr+tr>td {
+			border-top: 1px solid;
+		}
+
+		blockquote {
+			margin: 0 7px 0 5px;
+			padding: 0 16px 0 10px;
+			border-left-width: 5px;
+			border-left-style: solid;
+		}
+
+		code {
+			font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+			font-size: 1em;
+			line-height: 1.357em;
+		}
+
+		body.wordWrap pre {
+			white-space: pre-wrap;
+		}
+
+		pre:not(.hljs),
+		pre.hljs code>div {
+			padding: 16px;
+			border-radius: 3px;
+			overflow: auto;
+		}
+
+		pre code {
+			color: var(--vscode-editor-foreground);
+			tab-size: 4;
+		}
+
+		/** Theming */
+
+		.vscode-light pre {
+			background-color: rgba(220, 220, 220, 0.4);
+		}
+
+		.vscode-dark pre {
+			background-color: rgba(10, 10, 10, 0.4);
+		}
+
+		.vscode-high-contrast pre {
+			background-color: rgb(0, 0, 0);
+		}
+
+		.vscode-high-contrast h1 {
+			border-color: rgb(0, 0, 0);
+		}
+
+		.vscode-light table>thead>tr>th {
+			border-color: rgba(0, 0, 0, 0.69);
+		}
+
+		.vscode-dark table>thead>tr>th {
+			border-color: rgba(255, 255, 255, 0.69);
+		}
+
+		.vscode-light h1,
+		.vscode-light hr,
+		.vscode-light table>tbody>tr+tr>td {
+			border-color: rgba(0, 0, 0, 0.18);
+		}
+
+		.vscode-dark h1,
+		.vscode-dark hr,
+		.vscode-dark table>tbody>tr+tr>td {
+			border-color: rgba(255, 255, 255, 0.18);
+		}
+	</style>
+
+	<style>
+		/* Tomorrow Theme */
+		/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+		/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+		/* Tomorrow Comment */
+		.hljs-comment,
+		.hljs-quote {
+			color: #8e908c;
+		}
+
+		/* Tomorrow Red */
+		.hljs-variable,
+		.hljs-template-variable,
+		.hljs-tag,
+		.hljs-name,
+		.hljs-selector-id,
+		.hljs-selector-class,
+		.hljs-regexp,
+		.hljs-deletion {
+			color: #c82829;
+		}
+
+		/* Tomorrow Orange */
+		.hljs-number,
+		.hljs-built_in,
+		.hljs-builtin-name,
+		.hljs-literal,
+		.hljs-type,
+		.hljs-params,
+		.hljs-meta,
+		.hljs-link {
+			color: #f5871f;
+		}
+
+		/* Tomorrow Yellow */
+		.hljs-attribute {
+			color: #eab700;
+		}
+
+		/* Tomorrow Green */
+		.hljs-string,
+		.hljs-symbol,
+		.hljs-bullet,
+		.hljs-addition {
+			color: #718c00;
+		}
+
+		/* Tomorrow Blue */
+		.hljs-title,
+		.hljs-section {
+			color: #4271ae;
+		}
+
+		/* Tomorrow Purple */
+		.hljs-keyword,
+		.hljs-selector-tag {
+			color: #8959a8;
+		}
+
+		.hljs {
+			display: block;
+			overflow-x: auto;
+			color: #4d4d4c;
+			padding: 0.5em;
+		}
+
+		.hljs-emphasis {
+			font-style: italic;
+		}
+
+		.hljs-strong {
+			font-weight: bold;
+		}
+	</style>
+
+	<style>
+		/*
+ * Markdown PDF CSS
+ */
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+			padding: 0 12px;
+		}
+
+		pre {
+			background-color: #f8f8f8;
+			border: 1px solid #cccccc;
+			border-radius: 3px;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			overflow-wrap: break-word;
+		}
+
+		pre:not(.hljs) {
+			padding: 23px;
+			line-height: 19px;
+		}
+
+		blockquote {
+			background: rgba(127, 127, 127, 0.1);
+			border-color: rgba(0, 122, 204, 0.5);
+		}
+
+		.emoji {
+			height: 1.4em;
+		}
+
+		code {
+			font-size: 14px;
+			line-height: 19px;
+		}
+
+		/* for inline code */
+		:not(pre):not(.hljs)>code {
+			color: #C9AE75;
+			/* Change the old color so it seems less like an error */
+			font-size: inherit;
+		}
+
+		/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+		.page {
+			page-break-after: always;
+		}
+	</style>
+
+	<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+
+<body>
+	<script>
+		mermaid.initialize({
+			startOnLoad: true,
+			theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+				? 'dark'
+				: 'default'
+		});
+	</script>
+	<h1 id="1-conda-command-reference">1. <code>conda</code> Command Reference</h1>
+	<p>Getting started with environment management doesn't have to be hard; you just have to start with the correct
+		tools. Using with this reference, I hope to make managing dependencies with <code>conda</code> the right tool
+		for you and your team.</p>
+	<ul>
+		<li><a href="#1-conda-command-reference">1. <code>conda</code> Command Reference</a>
+			<ul>
+				<li><a href="#11-create-a-basic-virtual-environment">1.1. Create a Basic Virtual Environment</a>
+					<ul>
+						<li><a href="#111-basic-environment">1.1.1. Basic Environment</a></li>
+						<li><a href="#112-specify-dependencies-upon-creation">1.1.2. Specify Dependencies Upon
+								Creation</a></li>
+						<li><a href="#113-create-venv-in-project-directory">1.1.3. Create <code>venv</code> in Project
+								Directory</a>
+							<ul>
+								<li><a href="#1131-specify-more-complicated-dependencies">1.1.3.1. Specify More
+										Complicated Dependencies</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#12-yaml-files">1.2. <code>YAML</code> Files</a>
+					<ul>
+						<li><a href="#121-generate-yaml-file">1.2.1. Generate <code>YAML</code> File</a></li>
+						<li><a href="#122-cross-platform-yaml-specification">1.2.2. Cross-Platform <code>YAML</code>
+								Specification</a></li>
+						<li><a href="#123-yaml-to-update-existing-venv">1.2.3. <code>YAML</code> to Update Existing
+								<code>venv</code></a></li>
+					</ul>
+				</li>
+				<li><a href="#13-txt-file-specification">1.3. <code>TXT</code> File Specification</a>
+					<ul>
+						<li><a href="#131-write-txt-specification">1.3.1. Write <code>TXT</code> Specification</a></li>
+						<li><a href="#132-create-venv-from-txt-specification">1.3.2. Create <code>venv</code> from
+								<code>TXT</code> Specification</a></li>
+					</ul>
+				</li>
+				<li><a href="#14-extras">1.4. Extras</a>
+					<ul>
+						<li><a href="#141-clone-an-environment">1.4.1. Clone an Environment</a></li>
+						<li><a href="#142-delete-existing-environment">1.4.2. Delete Existing Environment</a></li>
+						<li><a href="#143-environment-variables">1.4.3. Environment Variables</a>
+							<ul>
+								<li><a href="#1431-use-environment-variables-in-virtual-environment">1.4.3.1. Use
+										Environment Variables in Virtual Environment</a></li>
+								<li><a href="#1432-environment-variables-in-yaml-specification">1.4.3.2. Environment
+										Variables in YAML Specification</a></li>
+								<li><a href="#1433-target-deployment-machines">1.4.3.3. Target Deployment Machines</a>
+								</li>
+								<li><a href="#1434-use-local-package-repository">1.4.3.4. Use Local Package
+										Repository</a></li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li><a href="#15-generated-environment-file-syntax">1.5. Generated Environment File Syntax</a>
+					<ul>
+						<li><a href="#151-yaml-file-syntax">1.5.1. <code>YAML</code> File Syntax</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<h2 id="11-create-a-basic-virtual-environment">1.1. Create a Basic Virtual Environment</h2>
+	<p>Virtual environments have many benefits, not the least of which involves collaborative projects, where you might
+		want to share the exact minimum requirements to make a project run.</p>
+	<h3 id="111-basic-environment">1.1.1. Basic Environment</h3>
+	<ul>
+		<li>create new virtual environment (<code>venv</code>) with name <code>myenv</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --name myenv</span>
+</div></code></pre>
+	<ul>
+		<li>activate created <code>venv</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda activate myenv</span>
+</div></code></pre>
+	<h3 id="112-specify-dependencies-upon-creation">1.1.2. Specify Dependencies Upon Creation</h3>
+	<ul>
+		<li>create new <code>venv</code> with name <code>myenv</code> with specified Python version</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --name myenv python=3.10</span>
+</div></code></pre>
+	<h3 id="113-create-venv-in-project-directory">1.1.3. Create <code>venv</code> in Project Directory</h3>
+	<ul>
+		<li>create <code>venv</code> in subdirectory, <code>env</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --prefix ./env</span>
+</div></code></pre>
+	<ul>
+		<li>activate new <code>venv</code> in created subdirectory
+			<ul>
+				<li>navigate to your project directory</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> project-directory</span>
+</div></code></pre>
+	<ul>
+		<li>activate env</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda activate ./env</span>
+</div></code></pre>
+	<ul>
+		<li>NOTE: this <code>venv</code>'s location will not be known by conda, so you always have to manually specify
+			path to directory when activating
+			<ul>
+				<li>upsides to this method include not having to worry about unique environment names and redistribution
+					of exact environment used in project</li>
+			</ul>
+		</li>
+	</ul>
+	<h4 id="1131-specify-more-complicated-dependencies">1.1.3.1. Specify More Complicated Dependencies</h4>
+	<ul>
+		<li>create <code>venv</code> in subdirectory, <code>env</code> with specified python and package versions
+			<ul>
+				<li>can also specify packages with <code>conda create --name</code> command</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --prefix ./env python=3.10 jupyterlab=3.2 matplotlib=3.5 numpy=1.21</span>
+</div></code></pre>
+	<ul>
+		<li>NOTE: After creating a <code>venv</code> using --prefix, you'll notice this environment is shown on the
+			command line with a much longer name (full path to <code>venv</code>)
+			<ul>
+				<li>Use the following command if you wish to change this behavior:</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda config --<span class="hljs-built_in">set</span> env_prompt <span class="hljs-string">"&lt;{name}&gt;"</span></span>
+</div></code></pre>
+	<ul>
+		<li>
+			<p>where &quot;<code>&quot;{name}&quot;</code>&quot; is the syntax to capture the name of the directory you
+				put the environment in</p>
+			<ul>
+				<li>NOTE &quot;<code>{name}</code>&quot; is a string literal, and <code>name</code> should not be
+					changed. The change is automatic, where the <code>{}</code> are a templating syntax, and
+					<code>name</code> refers to <code>name</code> as referenced by the conda environment
+				</li>
+			</ul>
+		</li>
+		<li>
+			<p>Below, we begin to explore <code>venv</code> specification files, which provide a much more robust means
+				of <code>venv</code> dependency specification, generation, and distribution.</p>
+		</li>
+	</ul>
+	<h2 id="12-yaml-files">1.2. <code>YAML</code> Files</h2>
+	<p>When using <code>conda</code> as a package/environment handler, <code>YAML</code> files offer the creater the
+		most flexible, easy to share, and reproducible means of specifying dependencies. Additionally, the recipient is
+		given an easy to understand and robust means through which to initialize an environment having all necessary
+		dependencies to get started with their project. This is my go-to method for dependency sharing.</p>
+	<h3 id="121-generate-yaml-file">1.2.1. Generate <code>YAML</code> File</h3>
+	<ul>
+		<li>write new <code>environment.yml</code> file with current <code>venv</code> packages specified</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env <span class="hljs-built_in">export</span> &gt; environment.yml</span>
+</div></code></pre>
+	<ul>
+		<li>create new <code>venv</code> from <code>environment.yml</code> file (preferred by conda)</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env create -f environment.yml</span>
+</div></code></pre>
+	<h3 id="122-cross-platform-yaml-specification">1.2.2. Cross-Platform <code>YAML</code> Specification</h3>
+	<ul>
+		<li>write with only manually install packages (using <code>--from-history</code> tag)
+			<ul>
+				<li>good for cross-platform environment sharing</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env <span class="hljs-built_in">export</span> --from-history &gt; environment.yml</span>
+</div></code></pre>
+	<h3 id="123-yaml-to-update-existing-venv">1.2.3. <code>YAML</code> to Update Existing <code>venv</code></h3>
+	<ul>
+		<li>update <code>venv</code> in subdirectory, <code>env</code>, using <code>environment.yml</code> file
+			<ul>
+				<li>this can be after manually deleting no longer used packages, for example</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div>conda env update --prefix ./env --file environment.yml  --prune
+</div></code></pre>
+	<ul>
+		<li>NOTE: After creating a <code>venv</code> using --prefix, you'll notice this environment is shown on the
+			command line with a much longer name (full path to <code>venv</code>)
+			<ul>
+				<li>Use the following command if you wish to change this behavior:</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda config --<span class="hljs-built_in">set</span> env_prompt <span class="hljs-string">"&lt;{name}&gt;"</span></span>
+</div></code></pre>
+	<ul>
+		<li>where &quot;<code>&quot;{name}&quot;</code>&quot; is the syntax to capture the name of the directory you put
+			the environment in
+			<ul>
+				<li>NOTE &quot;<code>{name}</code>&quot; is a string literal, and <code>name</code> should not be
+					changed. The change is automatic, where the <code>{}</code> are a templating syntax, and
+					<code>name</code> refers to <code>name</code> as referenced by the conda environment
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<h2 id="13-txt-file-specification">1.3. <code>TXT</code> File Specification</h2>
+	<p>Sometimes, your recipient may not be versed in <code>conda</code>, and instead prefer something like
+		<code>pip</code> for package management.
+	</p>
+	<h3 id="131-write-txt-specification">1.3.1. Write <code>TXT</code> Specification</h3>
+	<ul>
+		<li>write installed packages from activated environment to <code>spec-file.txt</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda list --explicit --md5 &gt; spec-file.txt</span>
+</div></code></pre>
+	<h3 id="132-create-venv-from-txt-specification">1.3.2. Create <code>venv</code> from <code>TXT</code> Specification
+	</h3>
+	<ul>
+		<li>create new environment from <code>spec-file.txt</code> with name <code>myenv</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --name myenv --file spec-file.txt</span>
+</div></code></pre>
+	<h2 id="14-extras">1.4. Extras</h2>
+	<p>Cloning, deleting, and specifying environment variables using <code>conda</code> &amp; <code>YAML</code></p>
+	<h3 id="141-clone-an-environment">1.4.1. Clone an Environment</h3>
+	<ul>
+		<li>clone existing <code>venv</code> called <code>myenv</code> into another <code>venv</code> called
+			<code>myclone</code>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda create --name myclone --<span class="hljs-built_in">clone</span> myenv</span>
+</div></code></pre>
+	<h3 id="142-delete-existing-environment">1.4.2. Delete Existing Environment</h3>
+	<ul>
+		<li>delete a <code>venv</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env remove --name myenv</span>
+</div></code></pre>
+	<h3 id="143-environment-variables">1.4.3. Environment Variables</h3>
+	<p>Sometimes it's convenient to namespace your environment variables. Just as packages can be installed in a
+		<code>venv</code>, so too can <code>venv</code> environment variables be set.
+	</p>
+	<h4 id="1431-use-environment-variables-in-virtual-environment">1.4.3.1. Use Environment Variables in Virtual
+		Environment</h4>
+	<ul>
+		<li>set environment variable in <code>venv</code> (disappears after deactivating <code>venv</code>)</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env config vars <span class="hljs-built_in">set</span> my_var=value</span>
+</div></code></pre>
+	<ul>
+		<li>print to stdout all <code>venv</code> environment variables</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env config vars list</span>
+</div></code></pre>
+	<ul>
+		<li>unset <code>venv</code> environment variable</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda env config vars <span class="hljs-built_in">unset</span> my_var -n <span class="hljs-built_in">test</span>-env</span>
+</div></code></pre>
+	<h4 id="1432-environment-variables-in-yaml-specification">1.4.3.2. Environment Variables in YAML Specification</h4>
+	<p>In the same way an environment may be duplicated by users by reading a YAML file, so too can the environment
+		variables be specified to automate distribution of packages and necessary namespaced environment variables.</p>
+	<ul>
+		<li>set environment variables in <code>.yml</code> file, such as the <code>environment.yml</code> above</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-attr">variables:</span>
+  <span class="hljs-attr">VAR1:</span> <span class="hljs-string">valueA</span>
+  <span class="hljs-attr">VAR2:</span> <span class="hljs-string">valueB</span>
+</div></code></pre>
+	<h4 id="1433-target-deployment-machines">1.4.3.3. Target Deployment Machines</h4>
+	<p>One good reason to make environment variables available every time an environment is made might be for use in a
+		target deployment machine or another containerized system (Docker, for instance).</p>
+	<ul>
+		<li>Set environment variables automatically upon <code>venv</code> activation.
+			<ul>
+				<li>First, navigate to directory pointed to by environment variable, <code>CONDA_PREFIX</code>:</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> %CONDA_PREFIX%</span>
+</div></code></pre>
+	<ul>
+		<li>Now, we need two directories
+			<ul>
+				<li>1 for our activate script</li>
+				<li>1 for our deactivate script</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> mkdir .\etc\conda\activate.d</span>
+<span class="hljs-meta">$</span><span class="bash"> mkdir .\etc\conda\deactivate.d</span>
+</div></code></pre>
+	<ul>
+		<li>Now, lets create the scipts:</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">type</span> NUL &gt; .\etc\conda\activate.d\env_vars.bat</span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">type</span> NUL &gt; .\etc\conda\deactivate.d\env_vars.bat</span>
+</div></code></pre>
+	<ul>
+		<li>Finally, we can write the script syntax.</li>
+		<li>contents of <code>activate.d\env_vars.bat</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-built_in">set</span> MY_KEY='secret-key-value'
+<span class="hljs-built_in">set</span> MY_FILE=C:\<span class="hljs-built_in">path</span>\to\my\file
+</div></code></pre>
+	<ul>
+		<li>contents of <code>deactivate.d\env_vars.bat</code></li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-built_in">set</span> MY_KEY=
+<span class="hljs-built_in">set</span> MY_FILE=
+</div></code></pre>
+	<h4 id="1434-use-local-package-repository">1.4.3.4. Use Local Package Repository</h4>
+	<ul>
+		<li>index a local package repo</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-meta">$</span><span class="bash"> conda search -c file:///opt/channel/ --override-channels</span>
+</div></code></pre>
+	<h2 id="15-generated-environment-file-syntax">1.5. Generated Environment File Syntax</h2>
+	<h3 id="151-yaml-file-syntax">1.5.1. <code>YAML</code> File Syntax</h3>
+	<ul>
+		<li>specify packages and <code>venv</code> name, <code>myenv</code>, in <code>.yml</code> file manually
+			<ul>
+				<li>this is what is written using <code>conda env export --from-history &gt; environment.yml</code>
+					command above</li>
+			</ul>
+		</li>
+	</ul>
+	<pre class="hljs"><code><div><span class="hljs-comment"># run this: </span>
+<span class="hljs-comment"># &gt;&gt;&gt; conda env create -f environment.yml</span>
+<span class="hljs-comment"># to create your environment named 'test' (you can change environment name below, if you like)</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">test</span>
+<span class="hljs-attr">channels:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">defaults</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">conda-forge</span>
+<span class="hljs-attr">dependencies:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">python=3.10</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">pysimplegui</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">ipykernel</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">matplotlib</span>
+<span class="hljs-attr">prefix:</span> <span class="hljs-string">C:\Users\tnlma\Anaconda3\envs\test</span>
+</div></code></pre>
+	<ul>
+		<li>NOTE: <code>prefix: C:\Users\tnlma\Anaconda3\envs\test</code> is automatically created when creating YAML
+			file, as is <code>name: test</code> at the top</li>
+	</ul>
+
+</body>
+
+</html>
