@@ -1,497 +1,428 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>terms.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
 <style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
+	.signature {
+		border: 0;
+		border-bottom: 1px solid #000;
+		border-top: 0px solid white;
+	}
 </style>
 
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
 
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
+<div id="content">
+	<!-- <ul>
+		<li>Terms and Conditions&nbsp;</li>
+		<li>Interpretation and Definitions<ul>
+				<li>Interpretation</li>
+				<li>Definitions Acknowledgment</li>
+			</ul>
+		</li>
+		<li>Client Services</li>
+		<li>Links to Other Websites</li>
+		<li>Termination</li>
+		<li>Limitation of Liability</li>
+		<li>"AS IS" and "AS AVAILABLE" Disclaimer Governing Law</li>
+		<li>Disputes Resolution</li>
+		<li>For European Union (EU) Users</li>
+		<li>United States Legal Compliance Severability and Waiver<ul>
+				<li>Severability</li>
+				<li>Waiver</li>
+			</ul>
+		</li>
+		<li>Translation Interpretation</li>
+		<li>Changes to These Terms and Conditions Contact Us<ul>
+				<li>Danny Marshall</li>
+			</ul>
+		</li>
+	</ul> -->
+	<hr />
+	<h1 id="termsandconditions">Terms and Conditions</h1>
+	<hr style="border-width: 0.5rem;" />
+	<p>Last updated: September 28, 2022</p>
+	<h2 id="interpretationanddefinitions">Interpretation and Definitions</h2>
+	<h3 id="interpretation">Interpretation</h3>
+	<p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The
+		following definitions shall have the same meaning regardless of whether they appear in singular or in plural.
+	</p>
+	<h3 id="definitions">Definitions</h3>
+	<p>For the purposes of these Terms and Conditions:</p>
+	<ul>
+		<li><strong>Application</strong>&nbsp;(also referred to as "Software") means the software program provided by
+			the Company downloaded by You on any electronic device, including but not limited to PC, MAC, laptop, smart
+			phone, tablet, reader, where software program is hereafter informally denoted by name, Predictive
+			Extrapolation and Analysis Kit (referred to as either "PEAK", "Application", "Applications", "the
+			Application", "Website", or "the Website" in this Agreement).</li>
+		<li><strong>Schedule</strong>&nbsp;means the payment schedule described in #Delivery Payment Schedule</li>
+		<li><strong>Application Store</strong>&nbsp;means the digital distribution service operated and developed by
+			Apple Inc. (Apple App Store) or Google Inc. (Google Play Store) in which the Application has been
+			downloaded.</li>
+		<li><strong>Affiliate</strong>&nbsp;means an entity that controls, is controlled by or is under common control
+			with a party, where "control" means ownership of 50% or more of the shares, equity interest or other
+			securities entitled to vote for election of directors or other managing authority.</li>
+		<li><strong>Country</strong>&nbsp;refers to: Indiana, United States</li>
+		<li><strong>Company</strong>&nbsp;(referred to as either "the Company", "Developer", "We", "Us" or "Our" in this
+			Agreement) refers to M&amp;M BroTech Worldwide LLC, 3981 North State Rd 43 Solsberry IN 47459.</li>
+		<li><strong>Device</strong>&nbsp;means any device that can access the Service such as a computer, a cellphone or
+			a digital tablet.</li>
+		<li><strong>Service</strong>&nbsp;refers to the Application.</li>
+		<li><strong>Specification</strong>&nbsp;refers to Phase 1 Client responsibilities for ensuring requirements and
+			intent clarity - described in #Specification</li>
+		<li><strong>Client Service</strong>&nbsp;refers to services provided to the Company by Client.</li>
+		<li><strong>Terms and Conditions</strong>&nbsp;(also referred as "Terms") mean these Terms and Conditions that
+			form the entire agreement between You and the Company regarding the use of the Service.</li>
+		<li><strong>Third-party Social Media Service</strong>&nbsp;means any services or content (including data,
+			information, products or services) provided by a third-party that may be displayed, included or made
+			available by the Service.</li>
+		<li><strong>You</strong>&nbsp;(also referred to as "Client" or "the Client") means the individual accessing or
+			using the Service, or the company, or other legal entity on behalf of which such individual is accessing or
+			using the Service, as applicable.</li>
+	</ul>
+	<h2 id="acknowledgment">Acknowledgment</h2>
+	<p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You
+		and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of
+		the Service.</p>
+	<p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and
+		Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.
+	</p>
+	<p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any
+		part of these Terms and Conditions then You may not access the Service.</p>
+	<h2 id="clientservice">Client Service</h2>
+	<p>The Company will make all reasonable effort to meet any agreed-to milestone and/or phase timelines. All
+		milestones are an approximation depending on many factors, some of which will be outside the Company's
+		reasonable control. These factors may include not having a clear person of contact (PoC); therefore, the Company
+		shall have a Client-appointed authority-having figure with whom the Company is able to make speedy contact and
+		correspondence.This PoC shall also assist the Developer in defining Software requirements, as described in
+		#Specification.&nbsp;</p>
+	<p>The Client's assigned person of contact may not always be available for feedback and demonstration sessions due
+		to circumstances outside their control. In this case, milestones and phases may be pushed back to a reasonable
+		extent if the quality of the product will degrade otherwise. The Company will make all reasonable effort to keep
+		project milestones on track.</p>
+	<p>For initial iterations of PEAK, access to necessary data and relevant devices will hasten the Company's time to
+		devlop. As such, the Company requests a hosted server and VPN access to the Client's network on their Company
+		workstations be provided for the duration of the contract term.</p>
+	<h2 id="clientsduties">Client's duties</h2>
+	<ol>
+		<li><strong>Personnel Access</strong>&nbsp;The Client shall provide reasonable access to engineers for feedback
+			on desired software functionality and features, prototype design and approval, MVP testing, feedback and
+			approval - as described in #Specification, Phase 1, and written notice of its finding that the Software
+			conforms to the Specifications within 14 calendar days of the Delivery Date (the "AcceptanceDate") unless it
+			finds that the Software does not conform to the Specifications as described in the Proposal and again in
+			#Specification. If the Software as delivered does not conform with the Specifications, the Client shall
+			within 14 calendar days of the Delivery Date notify the Developer in writing of the ways on which it does
+			not conform with the Specifications. The Developer agrees that upon receiving such notice, it shall make
+			reasonable efforts to correct any non-conformity.</li>
+		<li><strong>Additional Access</strong>&nbsp;Additionally, the Software shall require on site and remote access
+			to any intended target networks, databases, servers, target distribution machines, cloud resources, network
+			resources, target hardware, target operating systems, hosting services, and more of the like, if deemed
+			necessary by the Client. To affect such access, the Client shall provide access, such as VPN, network,
+			software, et al, on Developer's development machines to ensure timely delivery of Deliverables. Server
+			resources shall also be allocated to run production ready software containers for maximal uptime
+			capabilities.&nbsp;</li>
+	</ol>
+	<h2 id="compensation">Compensation</h2>
+	<ol>
+		<li><strong>The Software</strong>&nbsp;In consideration for the Service, the Client shall pay the Developer 20%
+			down,with additional installments invoiced upon phase completion - defined in greater detail in
+			#Specification where the final 50% shall be invoiced upon the Acceptance Date. More details regarding
+			specifics of payment for the Service, see #Delivery Payment Schedule. Developer shall provide the Client
+			with an invoice. Invoices will be provided for work completed by the developer on net 30 terms.</li>
+		<li><strong>Materials</strong>&nbsp;In consideration for materials required, Developer shall notify Client of
+			requirements as needed per stage of development, providing various purchase options and pros and cons of
+			each. Examples of such requirements may include SAAS, such as web hosting, secure version control,
+			distribute resources, or hardware requirements, such as various OS integrations for testing, sensors,
+			buttons, displays, et al. as defined in Phase 1 requirements drafting activity. Developer shall endeavor to
+			give timely notice to give Client adequate time to acquire materials. Any delay in acquisition may result in
+			delay in deliverable timeframes.&nbsp;</li>
+	</ol>
+	<h2 id="intellectualpropertyrightsnbsp">Intellectual property rights&nbsp;</h2>
+	<p>The Parties acknowledge and agree that the Client will hold all intellectual property rights in the Software
+		including, but not limited to, copyright and trademark rights. The Developer agrees not to claim any such
+		ownership in the Software's intellectual property at any time prior to or after the completion and delivery of
+		the Software to the Client.Additionally, the Parties acknowledge no claim may be made on 3rd party,open source,
+		or background software developed under permissive licensing. Some software shall be derived of the Developer's
+		own software packages. Developer shall maintain all rights to these packages, where Client shall be granted a
+		non exclusive, royalty free, worldwide, perpetual and irrevocable license, including the right to make, have
+		made, sell, use, reproduce, modify, adapt, display, distribute, make other versions of and disclose the property
+		and to sublicense others to do these things as they see fit. The Developer retains the right to display graphics
+		and other design elements as examples of its work in its portfolio.</p>
+	<h2 id="changeinspecifications">Change in specifications</h2>
+	<p>The Client may request that reasonable changes be made to the Specifications and tasks associated with the
+		implementation of the Specifications. If the Client requests such a change, the Developer will use its best
+		efforts to implement the requested change at no additional expense to the Client and without delaying delivery
+		of the Software.</p>
+	<p>In the event that the proposed change will, in the sole discretion of the Developer, require a delay in the
+		delivery of the Software or would result in additional expense to the Client, then the Client and the Developer
+		shall confer and the Client may either withdraw the proposed change or require the Developer to deliver the
+		Software with the proposed change and subject to the delay and/or additional expense. The Client agrees and
+		acknowledges that the judgment as to if there will be any delay or additional expense shall be made solely by
+		the Developer.</p>
+	<h2 id="forcemajeure">Force majeure</h2>
+	<p>Neither party shall be considered in default or breach of contract in the instance of any delay pertaining to an
+		act of god such as fire, explosion, or flood, or acts out of the control of said party, such as riot, war,
+		pandemic, or terrorism.</p>
+	<h2 id="linkstowebsites">Links to Websites</h2>
+	<p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the
+		Company.</p>
+	<p>The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices
+		of any third party web sites or services. You further acknowledge and agree that the Company shall not be
+		responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in
+		connection with the use of or reliance on any such content, goods or services available on or through any such
+		web sites or services.</p>
+	<p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or
+		services that You visit.</p>
+	<h2 id="termination">Termination</h2>
+	<p>We may terminate or suspend Your access immediately, without prior notice or liability, if You breach these Terms
+		and Conditions.</p>
+	<p>Upon termination, Your right to use the Service will cease immediately.</p>
+	<h2 id="limitationofliability">Limitation of Liability</h2>
+	<p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers
+		under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the
+		amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the
+		Service.</p>
+	<p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for
+		any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages
+		for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of
+		privacy arising out of or in any way related to the use of or inability to use the Service, third-party software
+		and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms),
+		even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy
+		fails of its essential purpose.</p>
+	<p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or
+		consequential damages, which means that some of the above limitations may not apply. In these states, each
+		party's liability will be limited to the greatest extent permitted by law.</p>
+	<h2 id="asisandasavailabledisclaimer">"AS IS" and "AS AVAILABLE" Disclaimer</h2>
+	<p>The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any
+		kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its
+		Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties,
+		whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties
+		of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise
+		out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing,
+		the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will
+		meet Your requirements, achieve any intended results, be compatible or work with any other software,
+		applications, systems or services, operate without interruption, meet any performance or reliability standards
+		or be error free or that any errors or defects can or will be corrected.</p>
+	<p>Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or
+		warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the
+		information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or
+		error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through
+		the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the
+		Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</p>
+	<p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable
+		statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But
+		in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent
+		enforceable under applicable law.</p>
+	<h2 id="governinglaw">Governing Law</h2>
+	<p>The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the
+		Service. Your use of the Application may also be subject to other local, state, national, or international laws.
+	</p>
+	<h2 id="disputesresolution">Disputes Resolution</h2>
+	<p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by
+		contacting the Company.</p>
+	<h2 id="foreuropeanunioneuusers">For European Union (EU) Users</h2>
+	<p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in
+		which you are resident in.</p>
+	<h2 id="unitedstateslegalcompliance">United States Legal Compliance</h2>
+	<p>You represent and warrant that (i) You are not located in a country that is subject to the United States
+		government embargo, or that has been designated by the United States government as a "terrorist supporting"
+		country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.
+	</p>
+	<h2 id="severabilityandwaiver">Severability and Waiver</h2>
+	<h3 id="severability">Severability</h3>
+	<p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and
+		interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law
+		and the remaining provisions will continue in full force and effect.</p>
+	<h3 id="waiver">Waiver</h3>
+	<p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these
+		Terms shall not effect a party's ability to exercise such right or require such performance at any time
+		thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
+	<h2 id="translationinterpretation">Translation Interpretation</h2>
+	<p>These Terms and Conditions may have been translated if We have made them available to You on our Service. You
+		agree that the original English text shall prevail in the case of a dispute.</p>
+	<h2 id="nbspacknowledgementbyclient">&nbsp;<strong>Acknowledgement by Client</strong></h2>
+	<p>Client agrees to the terms of this Agreement and Appendices hereto an acknowledges receipt of a copy of this
+		Agreement.</p>
+	<p>IN WITNESS WHEREOF, the Parties have executed this Agreement as of the Effective Date</p>
+	<h2 id="acceptancebycompany">Acceptance by Company:</h2>
+	<p>Danny Marshall, Member, Co-Founder &nbsp; <input type="text" class="signature" /></p>
+	<h2 id="acceptancebyclient">Acceptance by Client:</h2>
+	<p>Ben Wrightsman, President &amp; CEO &nbsp; <input type="text" class="signature" /></p>
+	<h2 id="contactus">Contact Us</h2>
+	<p>If you have any questions about these Terms and Conditions, You can contact us:</p>
+	<h4 id="dannymarshall">Danny Marshall</h4>
+	<ul>
+		<li>By email: legal@brotech.systems&nbsp;</li>
+		<li>By phone number: 7313351961</li>
+	</ul>
+	<hr />
+	<h1 id="exhibitanbsp">Exhibit A&nbsp;</h1>
+	<h2 id="specification">Specification</h2>
+	<p>Software development will occur in four (4) to six (6) phases, depending on Client's optional election (more
+		elective phase development in the Proposal).</p>
+	<ol>
+		<li>Preliminary requirements for Software<ul>
+				<li>Phases<ol>
+						<li><strong>Phase 1</strong>&nbsp;- Recipe Fluency<ol>
+								<li>Client responsibilities<ol>
+										<li>PoC to guide Developer fluency</li>
+										<li>PoC to communicate Software intent</li>
+									</ol>
+								</li>
+								<li>Developer responsibilities<ol>
+										<li>Communicate fluency</li>
+									</ol>
+								</li>
+								<li>Parties' responsibilities<ol>
+										<li>Define requirements and approval standards<ol>
+												<li>Prototype</li>
+												<li>MVP</li>
+												<li>Final Deliverable</li>
+											</ol>
+										</li>
+										<li>Produce written requirements documentation, to be approved by Client and
+											Developer</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+						<li><strong>Phase 2</strong>&nbsp;- UX Design &amp; Implementation<ol>
+								<li>Developer responsibilities<ol>
+										<li>Produce Prototype - defined in Phase 1</li>
+										<li>Provide Prototype source upon approval - defined in Phase 1</li>
+									</ol>
+								</li>
+								<li>Client responsibilities<ol>
+										<li>Prototype design approval</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+						<li><strong>Phase 3</strong>&nbsp;- Backend Design &amp; Implementation<ol>
+								<li>Developer responsibilities<ol>
+										<li>Implement back-end</li>
+										<li>Implement alpha interfaces<ol>
+												<li>CLI</li>
+												<li>API</li>
+											</ol>
+										</li>
+										<li>Implement backend data utility<ol>
+												<li>Database</li>
+											</ol>
+										</li>
+										<li>Delivery source upon approval - defined in Phase 1</li>
+									</ol>
+								</li>
+								<li>Client responsibilities<ol>
+										<li>Backend approval - defined in Phase 1</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+						<li><strong>Phase 4</strong>&nbsp;- Prototype<ol>
+								<li>Developer responsibilities<ol>
+										<li>Implement Prototype - defined in Phase 1 - incorporating UX, interfaces,
+											&amp; backend - implemented in Phase 3 - on Windows platform</li>
+										<li>Provide source upon approval of Prototype</li>
+									</ol>
+								</li>
+								<li>Client responsibilities<ol>
+										<li>Prototype approval</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+						<li><strong>Phase 5</strong>&nbsp;- Minimal Viable Product (option not selected by default)<ol>
+								<li>Developer responsibilities<ol>
+										<li>Multi-platform demonstration of Application - defined in Phase 1
+											incorporating previous Phase development</li>
+										<li>Provide MVP source, documentation, and training upon approval - defined in
+											Phase 1</li>
+									</ol>
+								</li>
+								<li>Client responsibilities<ol>
+										<li>Field acceptance - defined in Phase 1</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+						<li><strong>Phase 6</strong>&nbsp;- Final Deliverable (option not selected by default)<ol>
+								<li>Developer responsibilities<ol>
+										<li>Multi-platform demonstration incorporating Production-ready requirements -
+											defined in Phase 1</li>
+										<li>Update and distribute documentation upon request</li>
+									</ol>
+								</li>
+								<li>Client responsibilities<ol>
+										<li>Production-ready field acceptance - defined in Phase 1</li>
+									</ol>
+								</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+			</ul>
+		</li>
+	</ol>
+	<hr />
+	<h1 id="exhibitb">Exhibit B</h1>
+	<h2 id="deliverypaymentschedule">Delivery &amp; Payment Schedule</h2>
+	<ol>
+		<li><strong>Charge for Software Development Work</strong>. The fixed price will vary based on Client election of
+			Deliverable phases.<ol>
+				<li>Election through Prototype (Phase 4) - defined in Terms Phase 1 requirements approval<ol>
+						<li>20% deposit to be paid at the start of the project</li>
+						<li>15% upon approval of Phase 1 requirements and deliverables</li>
+						<li>15% upon approval of Phase 2 deliverables</li>
+						<li>50% upon approval of Phases 3 &amp; 4 deliverables</li>
+					</ol>
+				</li>
+				<li>Election through MVP (Phase 5) - defined in Terms Phase 1 requirements approval<ol>
+						<li>20% deposit to be paid at the start of the project</li>
+						<li>10% upon approval of Phase 1 requirements and deliverables</li>
+						<li>10% upon approval of Phase 2 deliverables</li>
+						<li>10% upon approval of Phases 3 &amp; 4 deliverables</li>
+						<li>50% upon approval of Phase 5 deliverables</li>
+					</ol>
+				</li>
+				<li>Election through Finalized Product (Phase 6) - defined in Terms Phase 1 requirements approval<ol>
+						<li>20% deposit to be paid at the start of the project</li>
+						<li>10% upon approval of Phase 2 requirements and deliverables</li>
+						<li>10% upon approval of Phase 3 deliverables</li>
+						<li>10% upon approval of Phases 4 &amp; 5 deliverables</li>
+						<li>50% upon approval of Phase 6 deliverables</li>
+					</ol>
+				</li>
+			</ol>
+		</li>
+		<li>Timeframe Estimates<ol>
+				<li>Phase 1<ol>
+						<li>2 weeks<ol>
+								<li>depends strongly on PoC availability</li>
+							</ol>
+						</li>
+					</ol>
+				</li>
+				<li>Phase 2<ol>
+						<li>2 weeks</li>
+					</ol>
+				</li>
+				<li>Phase 3<ol>
+						<li>4 weeks</li>
+					</ol>
+				</li>
+				<li>Phase 4<ol>
+						<li>2 weeks</li>
+					</ol>
+				</li>
+				<li>Phase 5<ol>
+						<li>4 weeks</li>
+					</ol>
+				</li>
+				<li>Phase 6<ol>
+						<li>4 weeks</li>
+					</ol>
+				</li>
+			</ol>
+		</li>
+	</ol>
+</div>
 
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-</head>
-<body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-	<ul><li><h2><a href="https://bic-proposal.qwilr.com/M-M-BroTech-Project-Proposal-PwDaTduR8Cpt">Back To Proposal</a></h2></li>
-<li><a href="#terms-and-conditions">Terms and Conditions</a></li>
-<li><a href="#interpretation-and-definitions">Interpretation and Definitions</a>
-<ul>
-<li><a href="#interpretation">Interpretation</a></li>
-<li><a href="#definitions">Definitions</a></li>
-</ul>
-</li>
-<li><a href="#acknowledgment">Acknowledgment</a></li>
-<li><a href="#client-services">Client Services</a></li>
-<li><a href="#links-to-other-websites">Links to Other Websites</a></li>
-<li><a href="#termination">Termination</a></li>
-<li><a href="#limitation-of-liability">Limitation of Liability</a></li>
-<li><a href="#as-is-and-as-available-disclaimer">&quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer</a></li>
-<li><a href="#governing-law">Governing Law</a></li>
-<li><a href="#disputes-resolution">Disputes Resolution</a></li>
-<li><a href="#for-european-union-eu-users">For European Union (EU) Users</a></li>
-<li><a href="#united-states-legal-compliance">United States Legal Compliance</a></li>
-<li><a href="#severability-and-waiver">Severability and Waiver</a>
-<ul>
-<li><a href="#severability">Severability</a></li>
-<li><a href="#waiver">Waiver</a></li>
-</ul>
-</li>
-<li><a href="#translation-interpretation">Translation Interpretation</a></li>
-<li><a href="#changes-to-these-terms-and-conditions">Changes to These Terms and Conditions</a></li>
-<li><a href="#contact-us">Contact Us</a>
-<ul>
-<li><a href="#danny-marshall">Danny Marshall</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1 id="terms-and-conditions">Terms and Conditions</h1>
-<p>Last updated: August 19, 2022</p>
-<p>Please read these terms and conditions carefully before using Our Service.</p>
-<h1 id="interpretation-and-definitions">Interpretation and Definitions</h1>
-<h2 id="interpretation">Interpretation</h2>
-<p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
-<h2 id="definitions">Definitions</h2>
-<p>For the purposes of these Terms and Conditions:</p>
-<ul>
-<li>
-<p><strong>Application</strong> means the software program provided by the Company downloaded by You on any electronic device, including but not limited to PC, MAC, laptop, smart phone, tablet, reader, where software program is hereafter informally denoted by name, Predictive Extrapolation and Analysis Kit (referred to as either &quot;PEAK&quot;, &quot;Application&quot;, &quot;Applications&quot;, &quot;the Application&quot;, &quot;Website&quot;, or &quot;the Website&quot; in this Agreement).</p>
-</li>
-<li>
-<p><strong>Application Store</strong> means the digital distribution service operated and developed by Apple Inc. (Apple App Store) or Google Inc. (Google Play Store) in which the Application has been downloaded.</p>
-</li>
-<li>
-<p><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where &quot;control&quot; means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</p>
-</li>
-<li>
-<p><strong>Country</strong> refers to: Indiana,  United States</p>
-</li>
-<li>
-<p><strong>Company</strong> (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to M&amp;M BroTech Worldwide LLC, 3981 North State Rd 43 Solsberry IN 47459.</p>
-</li>
-<li>
-<p><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</p>
-</li>
-<li>
-<p><strong>Service</strong> refers to the Application.</p>
-</li>
-<li>
-<p><strong>Client Service</strong> refers to services provided to the Company by Client.</p>
-</li>
-<li>
-<p><strong>Terms and Conditions</strong> (also referred as &quot;Terms&quot;) mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</p>
-</li>
-<li>
-<p><strong>Third-party Social Media Service</strong> means any services or content (including data, information, products or services) provided by a third-party that may be displayed, included or made available by the Service.</p>
-</li>
-<li>
-<p><strong>You</strong> (also referred to as &quot;Client&quot; or &quot;the Client&quot;) means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</p>
-</li>
-</ul>
-<h1 id="acknowledgment">Acknowledgment</h1>
-<p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
-<p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
-<p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
-<p>You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</p>
-<p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Our Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your personal information when You use the Application or the Website and tells You about Your privacy rights and how the law protects You. Please read Our Privacy Policy carefully before using Our Service.</p>
-<h1 id="client-services">Client Services</h1>
-<p>The Company will make all reasonable effort to meet any agreed-to milestone and/or phase timelines. All milestones are an approximation depending on many factors, some of which will be outside the Company's reasonable control. These factors may include not having a clear person of contact; therefore, the Company shall have a Client-appointed authority-having figure with whom the Company is able to make speedy contact and correspondence.</p>
-<p>The Client's assigned person of contact may not always be available for feedback and demonstration sessions due to circumstances outside their control. In this case, milestones and phases may be pushed back to a reasonable extent if the quality of the product will degrade otherwise. The Company will make all reasonable effort to keep project milestones on track.</p>
-<p>For initial iterations of PEAK, access to necessary data and relevant devices will hasten the Comnpany's time to devlop. As such, the Company requests a hosted server and VPN access to the Client's network on their Company workstations be provided for the duration of the contract term.</p>
-<h1 id="links-to-other-websites">Links to Other Websites</h1>
-<p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company.</p>
-<p>The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that the Company shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such web sites or services.</p>
-<p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</p>
-<h1 id="termination">Termination</h1>
-<p>We may terminate or suspend Your access immediately, without prior notice or liability,  if You breach these Terms and Conditions.</p>
-<p>Upon termination, Your right to use the Service will cease immediately.</p>
-<h1 id="limitation-of-liability">Limitation of Liability</h1>
-<p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
-<p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever (including, but not limited to, damages for loss of profits, loss of data or other information, for business interruption, for personal injury, loss of privacy arising out of or in any way related to the use of or inability to use the Service, third-party software and/or third-party hardware used with the Service, or otherwise in connection with any provision of this Terms), even if the Company or any supplier has been advised of the possibility of such damages and even if the remedy fails of its essential purpose.</p>
-<p>Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or consequential damages, which means that some of the above limitations may not apply. In these states, each party's liability will be limited to the greatest extent permitted by law.</p>
-<h1 id="%22as-is%22-and-%22as-available%22-disclaimer">&quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer</h1>
-<p>The Service is provided to You &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company, on its own behalf and on behalf of its Affiliates and its and their respective licensors and service providers, expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service, including all implied warranties of merchantability, fitness for a particular purpose, title and non-infringement, and warranties that may arise out of course of dealing, course of performance, usage or trade practice. Without limitation to the foregoing, the Company provides no warranty or undertaking, and makes no representation of any kind that the Service will meet Your requirements, achieve any intended results, be compatible or work with any other software, applications, systems or services, operate without interruption, meet any performance or reliability standards or be error free or that any errors or defects can or will be corrected.</p>
-<p>Without limiting the foregoing, neither the Company nor any of the company's provider makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service, or the information, content, and materials or products included thereon; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service, its servers, the content, or e-mails sent from or on behalf of the Company are free of viruses, scripts, trojan horses, worms, malware, timebombs or other harmful components.</p>
-<p>Some jurisdictions do not allow the exclusion of certain types of warranties or limitations on applicable statutory rights of a consumer, so some or all of the above exclusions and limitations may not apply to You. But in such a case the exclusions and limitations set forth in this section shall be applied to the greatest extent enforceable under applicable law.</p>
-<h1 id="governing-law">Governing Law</h1>
-<p>The laws of the Country, excluding its conflicts of law rules, shall govern this Terms and Your use of the Service. Your use of the Application may also be subject to other local, state, national, or international laws.</p>
-<h1 id="disputes-resolution">Disputes Resolution</h1>
-<p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</p>
-<h1 id="for-european-union-eu-users">For European Union (EU) Users</h1>
-<p>If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the country in which you are resident in.</p>
-<h1 id="united-states-legal-compliance">United States Legal Compliance</h1>
-<p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated by the United States government as a &quot;terrorist supporting&quot; country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
-<h1 id="severability-and-waiver">Severability and Waiver</h1>
-<h2 id="severability">Severability</h2>
-<p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
-<h2 id="waiver">Waiver</h2>
-<p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not effect a party's ability to exercise such right or require such performance at any time thereafter nor shall the waiver of a breach constitute a waiver of any subsequent breach.</p>
-<h1 id="translation-interpretation">Translation Interpretation</h1>
-<p>These Terms and Conditions may have been translated if We have made them available to You on our Service.
-You agree that the original English text shall prevail in the case of a dispute.</p>
-<h1 id="changes-to-these-terms-and-conditions">Changes to These Terms and Conditions</h1>
-<p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at Our sole discretion.</p>
-<p>By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms. If You do not agree to the new terms, in whole or in part, please stop using the website and the Service.</p>
-<h1 id="contact-us">Contact Us</h1>
-<p>If you have any questions about these Terms and Conditions, You can contact us:</p>
-<h3 id="danny-marshall">Danny Marshall</h3>
-<ul>
-<li>By email: legal@brotech.systems</li>
-<li>By phone number: 7313351961</li>
-</ul>
-
-</body>
 </html>
