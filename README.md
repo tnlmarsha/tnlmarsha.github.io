@@ -1,1 +1,1 @@
-See [my resume]([https://tnlmarsha.github.io](https://bold.pro/my/resume-larry-marshall))
+See [my resume](https://bold.pro/my/resume-larry-marshall)
